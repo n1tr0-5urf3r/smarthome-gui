@@ -28,7 +28,7 @@ class TabbedPanelApp(App):
     def update(self, *args):
         '''Update temperature from local file'''
         try:
-            f = open("/tmp/temperatur.txt","r")
+            f = open("/home/pi/smarthome-gui/temperatur.txt","r")
             new = f.read()
             self.temperatur = str(new)
         except IOError:
