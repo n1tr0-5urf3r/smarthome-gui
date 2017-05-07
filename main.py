@@ -45,7 +45,7 @@ class TabbedPanelApp(App):
         self.graphUpdate('/var/www/html/wetter.png')
         Clock.schedule_interval(self.update, 60)
         Clock.schedule_interval(partial(self.graphUpdate, '/var/www/html/waiting.png'), 47)
-        Clock.schedule_interval(partial(self.graphUpdate, '/var/www/html/wetter.png'), 47)
+        Clock.schedule_interval(partial(self.graphUpdate, '/var/www/html/wetter.png'), 47.4)
         # Start
         return Smarthome()
 
