@@ -36,15 +36,17 @@ class TabbedPanelApp(App):
             self.temperatur = 'NaN'
             print('File not Found!')
 
+
+## TODO Make one function with parameter
     def graphUpdate(self, *args):
         '''Update temperature graph'''
         self.graph = '/var/www/html/waiting.png'
-        self.graph = '/var/www/html/wetter.png'
+        #self.graph = '/var/www/html/wetter.png'
         #print('Graph updated')
 
-   ## def graphReload(self, *args):
-   ##     self.graph='/var/www/html/wetter.png'
-   ##     #print('Graph reloaded')
+    def graphReload(self, *args):
+        self.graph='/var/www/html/wetter.png'
+        #print('Graph reloaded')
 
     def build(self):
         self.load_kv('main.kv')
@@ -52,8 +54,8 @@ class TabbedPanelApp(App):
         self.update()
         self.graphUpdate()
         Clock.schedule_interval(self.update, 60)
-        Clock.schedule_interval(self.graphUpdate, 60)
-        ##Clock.schedule_interval(self.graphReload, 60)
+        Clock.schedule_interval(self.graphUpdate, 47)
+        Clock.schedule_interval(self.graphReload, 48)
         # Start
         return Smarthome()
 
