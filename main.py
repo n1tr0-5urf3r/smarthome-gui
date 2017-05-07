@@ -49,6 +49,7 @@ class TabbedPanelApp(App):
         self.load_kv('main.kv')
         # Temperatur
         self.update()
+        self.graphReload()
         Clock.schedule_interval(self.update, 60)
         Clock.schedule_interval(self.graphUpdate, 59)
         Clock.schedule_interval(self.graphReload, 60)
