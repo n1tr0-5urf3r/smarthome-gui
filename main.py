@@ -8,6 +8,7 @@ from kivy.uix.popup import Popup
 from kivy.uix.image import Image
 
 from kivy.clock import Clock
+from functools import partial
 
 from kivy.properties import StringProperty
 
@@ -36,26 +37,18 @@ class TabbedPanelApp(App):
             self.temperatur = 'NaN'
             print('File not Found!')
 
-
-## TODO Make one function with parameter
-    def graphUpdate(self, *args):
+    def graphUpdate(self, path, *args):
         '''Update temperature graph'''
-        self.graph = '/var/www/html/waiting.png'
-        #self.graph = '/var/www/html/wetter.png'
-        #print('Graph updated')
-
-    def graphReload(self, *args):
-        self.graph='/var/www/html/wetter.png'
-        #print('Graph reloaded')
+        self.graph = path
 
     def build(self):
         self.load_kv('main.kv')
         # Temperatur
         self.update()
-        self.graphUpdate()
+        self.graphUpdate('/var/www/html/wetter.png')
         Clock.schedule_interval(self.update, 60)
-        Clock.schedule_interval(self.graphUpdate, 47)
-        Clock.schedule_interval(self.graphReload, 48)
+        Clock.schedule_interval(partial(self.graphUpdate, '/var/www/html/waiting.png'), 2)
+        Clock.schedule_interval(partial(self.graphUpdate, '/var/www/html/wetter.png'), 2)
         # Start
         return Smarthome()
 
