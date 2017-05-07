@@ -24,6 +24,7 @@ class Smarthome(TabbedPanel):
 class TabbedPanelApp(App):
 
     temperatur = StringProperty()
+    graph = StringProperty()
 
     def update(self, *args):
         '''Update temperature from local file'''
@@ -35,11 +36,17 @@ class TabbedPanelApp(App):
             self.temperatur = 'NaN'
             print('File not Found!')
 
+    def graphUpdate(self, *args):
+        '''Update temperature graph'''
+        self.graph='/var/www/html/waiting.png'
+        self.graph='/var/www/html/wetter.png'
+
     def build(self):
         self.load_kv('main.kv')
         # Temperatur
         self.update()
-        Clock.schedule_interval(self.update, 30)
+        Clock.schedule_interval(self.update, 60)
+        Clock.schedule_interval(self.graphUpdate, 60)
         # Start
         return Smarthome()
 
