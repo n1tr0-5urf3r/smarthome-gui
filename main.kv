@@ -4,14 +4,25 @@
     tab_width: self.width / 5
     tab_height: 75
 
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "bg.jpg"
+
     TabbedPanelItem:
         text: 'Stromsteuerung'
         font_size: 20
+
         GridLayout:
+            canvas.before:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: "/var/www/html/bg.jpg"
             cols: 2
             spacing: 30, 30
             padding: 20, 20
-            size_hint: (0.9, 0.9)
             Button:
                 text: 'LED an'
                 font_size: 30
@@ -45,6 +56,11 @@
         text: 'PC-Steuerung'
         font_size: 20
         BoxLayout:
+            canvas.before:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: "/var/www/html/bg.jpg"
             orientation: 'vertical'
             spacing: 100, 100
             padding: 50, 50
