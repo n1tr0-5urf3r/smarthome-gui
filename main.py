@@ -1,5 +1,5 @@
-
 from kivy.app import App
+# kivy widgets
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.button import Button
 from kivy.uix.label import Label
@@ -9,7 +9,6 @@ from kivy.uix.image import Image
 
 from kivy.clock import Clock
 from functools import partial
-
 from kivy.properties import StringProperty
 
 # POST http requests
@@ -17,10 +16,8 @@ from urllib import urlencode
 from urllib2 import Request
 from urllib2 import urlopen
 
-
 class Smarthome(TabbedPanel):
     pass
-
 
 class TabbedPanelApp(App):
 
@@ -48,17 +45,15 @@ class TabbedPanelApp(App):
         self.graphUpdate('/var/www/html/wetter.png')
         Clock.schedule_interval(self.update, 60)
         Clock.schedule_interval(partial(self.graphUpdate, '/var/www/html/waiting.png'), 47)
-        Clock.schedule_interval(partial(self.graphUpdate, '/var/www/html/wetter.png'), 48)
+        Clock.schedule_interval(partial(self.graphUpdate, '/var/www/html/wetter.png'), 47)
         # Start
         return Smarthome()
-
 
     def sendPost(self, postrequest):
         url = 'http://192.168.2.132:13337/gpio.php'  # Set destination URL here
         post_fields = {postrequest: postrequest}  # Set POST fields here
         request = Request(url, urlencode(post_fields).encode())
         urlopen(request).read().decode('utf-8')
-
 
     def confirmdialog(self, message, request):
         grid = GridLayout(cols=2, spacing=(10,10))
