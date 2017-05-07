@@ -39,14 +39,19 @@ class TabbedPanelApp(App):
     def graphUpdate(self, *args):
         '''Update temperature graph'''
         self.graph='/var/www/html/waiting.png'
+        print('Graph updated')
+
+    def graphReload(self, *args):
         self.graph='/var/www/html/wetter.png'
+        print('Graph reloaded')
 
     def build(self):
         self.load_kv('main.kv')
         # Temperatur
         self.update()
         Clock.schedule_interval(self.update, 60)
-        Clock.schedule_interval(self.graphUpdate, 60)
+        Clock.schedule_interval(self.graphUpdate, 3)
+        Clock.schedule_interval(self.graphReload, 4)
         # Start
         return Smarthome()
 
