@@ -55,6 +55,7 @@ class TabbedPanelApp(App):
         # Start
         return Smarthome()
 
+
     def sendPost(self, postrequest):
         url = 'http://192.168.2.132:13337/gpio.php'  # Set destination URL here
         post_fields = {postrequest: postrequest}  # Set POST fields here
