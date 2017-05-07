@@ -8,7 +8,7 @@
         Rectangle:
             pos: self.pos
             size: self.size
-            source: "bg.jpg"
+            source: "/var/www/html/bg.jpg"
 
     TabbedPanelItem:
         text: 'Stromsteuerung'
@@ -94,7 +94,47 @@
     TabbedPanelItem:
         text: 'IR LED'
         font_size: 20
-        RstDocument:
-            text:
-                '\\n'.join(("Hello world", "-----------",
-                "You are in the third tab."))
+        GridLayout:
+            cols: 3
+            size_hint: (0.3,0.6)
+            font_size: 20
+            Button:
+                text: 'An'
+                font_size: 20
+                on_release: app.sendPost('ledein')
+            Button:
+                text: 'Jump'
+                font_size: 20
+                on_release: app.sendPost('ledjump7')
+            Button:
+                text: 'Fade'
+                font_size: 20
+                on_release: app.sendPost('ledfade7')
+            Button:
+                text: 'R'
+                font_size: 20
+                on_release: app.sendPost('ledred')
+            Button:
+                text: 'G'
+                font_size: 20
+                on_release: app.sendPost('ledgreen')
+            Button:
+                text: 'B'
+                font_size: 20
+                on_release: app.sendPost('ledblue')
+            Button:
+                text: 'Hell'
+                font_size: 20
+                on_release: app.sendPost('ledheller')
+            Button:
+                text: 'Dunkel'
+                font_size: 20
+                on_release: app.sendPost('leddunkler')
+            Button:
+                text: '>>>'
+                font_size: 20
+                on_release: app.sendPost('ledfaster')
+            Button:
+                text: '>'
+                font_size: 20
+                on_release: app.sendPost('ledslower')
