@@ -46,7 +46,7 @@
             Button:
                 text: 'PC aus'
                 font_size: 30
-                on_release: app.sendPost('pcoff')
+                on_release: app.confirmdialog('PC Strom aus?', 'pcoff')
             Label:
                 text:'Zimmertemperatur'
             Label:
@@ -71,7 +71,7 @@
             Button:
                 text: 'Shutdown'
                 font_size: 40
-                on_release: app.confirmdialog()
+                on_release: app.confirmdialog('PC wirklich\nherunterfahren?', 'pcshutdown')
 
     TabbedPanelItem:
         text: 'Temperatur'

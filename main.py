@@ -38,21 +38,22 @@ class TabbedPanelApp(App):
 
     def graphUpdate(self, *args):
         '''Update temperature graph'''
-        self.graph='/var/www/html/waiting.png'
+        self.graph = '/var/www/html/waiting.png'
+        self.graph = '/var/www/html/wetter.png'
         #print('Graph updated')
 
-    def graphReload(self, *args):
-        self.graph='/var/www/html/wetter.png'
-        #print('Graph reloaded')
+   ## def graphReload(self, *args):
+   ##     self.graph='/var/www/html/wetter.png'
+   ##     #print('Graph reloaded')
 
     def build(self):
         self.load_kv('main.kv')
         # Temperatur
         self.update()
-        self.graphReload()
+        self.graphUpdate()
         Clock.schedule_interval(self.update, 60)
-        Clock.schedule_interval(self.graphUpdate, 59)
-        Clock.schedule_interval(self.graphReload, 60)
+        Clock.schedule_interval(self.graphUpdate, 60)
+        ##Clock.schedule_interval(self.graphReload, 60)
         # Start
         return Smarthome()
 
@@ -64,19 +65,19 @@ class TabbedPanelApp(App):
         urlopen(request).read().decode('utf-8')
 
 
-    def confirmdialog(self):
+    def confirmdialog(self, message, request):
         grid = GridLayout(cols=2, spacing=(10,10))
         grid.add_widget(Image(source='/var/www/html/warning.png', size_hint=(0.8, 0.8)))
-        grid.add_widget(Label(text='PC wirklich\nherunterfahren?', font_size=42))
+        grid.add_widget(Label(text=message, font_size=42))
         btn_y = Button(text='Yies!', size_hint=(0.5,0.5), font_size=25)
-        btn_n = Button(text='No!', size_hint=(0.5,0.5), font_size=25)
+        btn_n = Button(text='Nope!', size_hint=(0.5,0.5), font_size=25)
         grid.add_widget(btn_y)
         grid.add_widget(btn_n)
         content = grid
 
         popup = Popup(content=content, title='Shutdown?', auto_dismiss=False, size_hint=(0.7, 0.7))
         btn_n.bind(on_press=popup.dismiss)
-        btn_y.bind(on_release=lambda instance, text="Test": self.confirmCallback('pcshutdown', popup) )
+        btn_y.bind(on_release=lambda instance, text="Test": self.confirmCallback(request, popup) )
         popup.open()
 
     def confirmCallback(self, request, popup):
