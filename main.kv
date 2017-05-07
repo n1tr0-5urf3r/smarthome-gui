@@ -1,0 +1,84 @@
+<Smarthome>:
+    pos_hint: {'center_x': .5, 'center_y': .5}
+    do_default_tab: False
+    tab_width: self.width / 5
+    tab_height: 75
+
+    TabbedPanelItem:
+        text: 'Stromsteuerung'
+        font_size: 20
+        GridLayout:
+            cols: 2
+            spacing: 30, 30
+            padding: 20, 20
+            size_hint: (0.9, 0.9)
+            Button:
+                text: 'LED an'
+                font_size: 30
+                on_release: app.sendPost('ledon')
+            Button:
+                text: 'LED aus'
+                font_size: 30
+                on_release: app.sendPost('ledoff')
+            Button:
+                text: 'TV an'
+                font_size: 30
+                on_release: app.sendPost('tvon')
+            Button:
+                text: 'TV aus'
+                font_size: 30
+                on_release: app.sendPost('tvoff')
+            Button:
+                text: 'PC an'
+                font_size: 30
+                on_release: app.sendPost('pcon')
+            Button:
+                text: 'PC aus'
+                font_size: 30
+                on_release: app.sendPost('pcoff')
+            Label:
+                text:'Zimmertemperatur'
+            Label:
+                text: app.temperatur
+
+    TabbedPanelItem:
+        text: 'PC-Steuerung'
+        font_size: 20
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 100, 100
+            padding: 50, 50
+            Button:
+                text: 'WOL'
+                font_size: 40
+                on_release: app.sendPost('pcwake')
+            Button:
+                text: 'Shutdown'
+                font_size: 40
+                on_release: app.confirmdialog()
+
+    TabbedPanelItem:
+        text: 'Temperatur'
+        font_size: 20
+        BoxLayout:
+        Image:
+            size: 800, 400
+            size_hint: None, None
+            source: '/var/www/html/wetter.png'
+
+    TabbedPanelItem:
+        text: 'Musik'
+        font_size: 20
+        BoxLayout:
+        Image:
+            size: 800, 400
+            size_hint: None, None
+            source: '/var/www/html/wetter.png'
+
+    TabbedPanelItem:
+        text: 'IR LED'
+        font_size: 20
+        RstDocument:
+            text:
+                '\\n'.join(("Hello world", "-----------",
+                "You are in the third tab."))
