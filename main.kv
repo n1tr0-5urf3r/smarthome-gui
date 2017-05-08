@@ -77,11 +77,12 @@
         text: 'Temperatur'
         font_size: 20
         BoxLayout:
-        Image:
+        AsyncImage:
+            id: image
             nocache: True
             size: 800, 400
             size_hint: None, None
-            source: app.graph
+            source: '/var/www/html/wetter.png'
 
     TabbedPanelItem:
         text: 'Musik'
