@@ -14,8 +14,9 @@ from kivy.lang import Builder
 
 # POST http requests
 from urllib import urlencode
-from urllib2 import Request
-from urllib2 import urlopen
+from urllib2 import Request, urlopen, URLError
+import logging
+
 
 Builder.load_file('main.kv')
 
@@ -43,10 +44,6 @@ class TabbedPanelApp(App):
             self.temperatur = 'NaN'
             print('File not Found!')
 
-    def graphUpdate(self, path, *args):
-        '''Update temperature graph'''
-        self.graph = path
-
     def build(self):
         # Temperatur
         self.update()
@@ -62,8 +59,11 @@ class TabbedPanelApp(App):
     def sendPost(self, postrequest):
         url = 'http://192.168.2.132:13337/gpio.php'  # Set destination URL here
         post_fields = {postrequest: postrequest}  # Set POST fields here
-        request = Request(url, urlencode(post_fields).encode())
-        urlopen(request).read().decode('utf-8')
+        try:
+            request = Request(url, urlencode(post_fields).encode())
+            urlopen(request).read().decode('utf-8')
+        except URLError:
+            print('ERROR: No Network connection')
 
     def confirmdialog(self, message, request):
         grid = GridLayout(cols=2, spacing=(10, 10))
