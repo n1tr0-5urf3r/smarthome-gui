@@ -99,6 +99,12 @@
         AnchorLayout:
             anchor_x: 'center'
             anchor_y: 'center'
+            canvas.before:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: "/var/www/html/bg.jpg"
+
             GridLayout:
                 cols: 3
                 size_hint: (0.4,0.7)
