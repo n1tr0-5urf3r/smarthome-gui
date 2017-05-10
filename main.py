@@ -15,7 +15,6 @@ from kivy.lang import Builder
 # POST http requests
 from urllib import urlencode
 from urllib2 import Request, urlopen, URLError
-import logging
 
 
 Builder.load_file('main.kv')
@@ -32,7 +31,6 @@ class Smarthome(TabbedPanel):
 class TabbedPanelApp(App):
 
     temperatur = StringProperty()
-    graph = StringProperty()
 
     def update(self, *args):
         '''Update temperature from local file'''
@@ -40,6 +38,7 @@ class TabbedPanelApp(App):
             f = open("/home/pi/smarthome-gui/temperatur.txt", "r")
             new = f.read()
             self.temperatur = str(new)
+            f.close()
         except IOError:
             self.temperatur = 'NaN'
             print('File not Found!')
@@ -51,7 +50,7 @@ class TabbedPanelApp(App):
         # Temperatur Graph
         sh = Smarthome()
         self.sh = sh
-        Clock.schedule_interval(App.get_running_app().sh.graphReload, 10)
+        Clock.schedule_interval(App.get_running_app().sh.graphReload, 60)
 
         # Start
         return sh
@@ -77,12 +76,10 @@ class TabbedPanelApp(App):
 
         popup = Popup(content=content, title='Shutdown?', auto_dismiss=False, size_hint=(0.7, 0.7))
         btn_n.bind(on_press=popup.dismiss)
-        btn_y.bind(on_release=lambda instance, text="Test": self.confirmCallback(request, popup))
+        btn_y.bind(on_press=popup.dismiss)
+        btn_y.bind(on_release=lambda instance, text="Test": self.sendPost(request))
         popup.open()
 
-    def confirmCallback(self, request, popup):
-        self.sendPost(request)
-        popup.dismiss()
 
 if __name__ == '__main__':
     TabbedPanelApp().run()
