@@ -1,3 +1,11 @@
+<Control@Button>:
+    font_size: 30
+    background_color: (1,1,1,0.5)
+
+<ControlIR@Button>:
+    font_size: 20
+    background_color: (1,1,1,0.5)
+
 <Smarthome>:
     pos_hint: {'center_x': .5, 'center_y': .5}
     do_default_tab: False
@@ -23,29 +31,23 @@
             cols: 2
             spacing: 30, 30
             padding: 20, 20
-            Button:
+            Control:
                 text: 'LED an'
-                font_size: 30
                 on_release: app.sendPost('ledon')
-            Button:
+            Control:
                 text: 'LED aus'
-                font_size: 30
                 on_release: app.sendPost('ledoff')
-            Button:
+            Control:
                 text: 'TV an'
-                font_size: 30
                 on_release: app.sendPost('tvon')
-            Button:
+            Control:
                 text: 'TV aus'
-                font_size: 30
                 on_release: app.sendPost('tvoff')
-            Button:
+            Control:
                 text: 'PC an'
-                font_size: 30
                 on_release: app.sendPost('pcon')
-            Button:
+            Control:
                 text: 'PC aus'
-                font_size: 30
                 on_release: app.confirmdialog('PC Strom aus?', 'pcoff')
             Label:
                 text:'Zimmertemperatur'
@@ -64,11 +66,11 @@
             orientation: 'vertical'
             spacing: 100, 100
             padding: 50, 50
-            Button:
+            Control:
                 text: 'WOL'
                 font_size: 40
                 on_release: app.sendPost('pcwake')
-            Button:
+            Control:
                 text: 'Shutdown'
                 font_size: 40
                 on_release: app.confirmdialog('PC wirklich\nherunterfahren?', 'pcshutdown')
@@ -104,48 +106,37 @@
                     pos: self.pos
                     size: self.size
                     source: "/var/www/html/bg.jpg"
-
             GridLayout:
                 cols: 3
                 size_hint: (0.4,0.7)
                 font_size: 20
-                Button:
+                ControlIR:
                     text: 'An'
-                    font_size: 20
                     on_release: app.sendPost('ledein')
-                Button:
+                ControlIR:
                     text: 'Jump'
-                    font_size: 20
                     on_release: app.sendPost('ledjump7')
-                Button:
+                ControlIR:
                     text: 'Fade'
-                    font_size: 20
                     on_release: app.sendPost('ledfade7')
-                Button:
+                ControlIR:
                     text: 'R'
-                    font_size: 20
                     on_release: app.sendPost('ledred')
-                Button:
+                ControlIR:
                     text: 'G'
-                    font_size: 20
                     on_release: app.sendPost('ledgreen')
-                Button:
+                ControlIR:
                     text: 'B'
-                    font_size: 20
                     on_release: app.sendPost('ledblue')
-                Button:
+                ControlIR:
                     text: 'Hell'
-                    font_size: 20
                     on_release: app.sendPost('ledheller')
-                Button:
+                ControlIR:
                     text: 'Dunkel'
-                    font_size: 20
                     on_release: app.sendPost('leddunkler')
-                Button:
+                ControlIR:
                     text: '>>>'
-                    font_size: 20
                     on_release: app.sendPost('ledfaster')
-                Button:
+                ControlIR:
                     text: '>'
-                    font_size: 20
                     on_release: app.sendPost('ledslower')
