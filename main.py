@@ -34,6 +34,7 @@ class TabbedPanelApp(App):
     temperatur = StringProperty()
     play_status = StringProperty()
     current_track = StringProperty()
+    background = StringProperty("/var/www/html/bg.jpg")
 
     def update(self, filepath, *args):
         '''Update temperature from local file'''
