@@ -44,17 +44,17 @@ class TabbedPanelApp(App):
             if value == 0:
                 self.temperatur = str(new)
             elif value == 1:
-                self.play_status == str(new)
+                self.play_status = str(new)
             elif value == 2:
-                self.current_track == str(new)
+                self.current_track = str(new)
             f.close()
         except IOError:
             if value == 0:
                 self.temperatur = 'NaN'
             elif value == 1:
-                self.play_status == 'ERROR!'
+                self.play_status = 'ERROR!'
             elif value == 2:
-                self.current_track == 'ERROR!'
+                self.current_track = 'ERROR!'
             print('File not Found! ' + filepath)
 
     def build(self):
