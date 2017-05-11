@@ -33,22 +33,22 @@
             padding: 20, 20
             Control:
                 text: 'LED an'
-                on_release: app.sendPost('ledon')
+                on_release: app.sendPost('ledon', 'gpio.php')
             Control:
                 text: 'LED aus'
-                on_release: app.sendPost('ledoff')
+                on_release: app.sendPost('ledoff', 'gpio.php')
             Control:
                 text: 'TV an'
-                on_release: app.sendPost('tvon')
+                on_release: app.sendPost('tvon', 'gpio.php')
             Control:
                 text: 'TV aus'
-                on_release: app.sendPost('tvoff')
+                on_release: app.sendPost('tvoff', 'gpio.php')
             Control:
                 text: 'PC an'
-                on_release: app.sendPost('pcon')
+                on_release: app.sendPost('pcon', 'gpio.php')
             Control:
                 text: 'PC aus'
-                on_release: app.confirmdialog('PC Strom aus?', 'pcoff')
+                on_release: app.confirmdialog('PC Strom aus?', 'pcoff', 'gpio.php')
             Label:
                 text:'Zimmertemperatur'
             Label:
@@ -69,11 +69,11 @@
             Control:
                 text: 'WOL'
                 font_size: 40
-                on_release: app.sendPost('pcwake')
+                on_release: app.sendPost('pcwake', 'gpio.php')
             Control:
                 text: 'Shutdown'
                 font_size: 40
-                on_release: app.confirmdialog('PC wirklich\nherunterfahren?', 'pcshutdown')
+                on_release: app.confirmdialog('PC wirklich\nherunterfahren?', 'pcshutdown', 'gpio.php')
 
     TabbedPanelItem:
         text: 'Temperatur'
@@ -89,11 +89,50 @@
     TabbedPanelItem:
         text: 'Musik'
         font_size: 20
-        BoxLayout:
-        Image:
-            size: 800, 400
-            size_hint: None, None
-            source: '/var/www/html/wetter.png'
+        GridLayout:
+            canvas.before:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: "/var/www/html/bg.jpg"
+            cols: 2
+            #spacing: 30, 30
+            padding: 20, 20
+            Control:
+                text: 'Rise Against'
+                on_release: app.sendPost('playlist1', 'music.php')
+            Control:
+                text: 'Rock'
+                on_release: app.sendPost('playlist2', 'music.php')
+            Control:
+                text: 'Rammstein'
+                on_release: app.sendPost('playlist3', 'music.php')
+            Control:
+                text: 'Skillet'
+                on_release: app.sendPost('playlist4', 'music.php')
+            BoxLayout:
+                Control:
+                    text: 'Play'
+                    on_release: app.sendPost('play', 'music.php')
+                Control:
+                    text: 'Mute'
+                    on_release: app.sendPost('mute', 'music.php')
+            BoxLayout:
+                Control:
+                    text: 'Next'
+                    on_release: app.sendPost('next', 'music.php')
+                Control:
+                    text: 'Stop'
+                    on_release: app.sendPost('stop', 'music.php')
+
+            Label:
+                text: 'Status: '
+            Label:
+                text: app.play_status
+            Label:
+                text: 'Current track: '
+            Label:
+                text: app.current_track
 
     TabbedPanelItem:
         text: 'IR LED'
@@ -112,31 +151,31 @@
                 font_size: 20
                 ControlIR:
                     text: 'An'
-                    on_release: app.sendPost('ledein')
+                    on_release: app.sendPost('ledein', 'gpio.php')
                 ControlIR:
                     text: 'Jump'
-                    on_release: app.sendPost('ledjump7')
+                    on_release: app.sendPost('ledjump7', 'gpio.php')
                 ControlIR:
                     text: 'Fade'
-                    on_release: app.sendPost('ledfade7')
+                    on_release: app.sendPost('ledfade7', 'gpio.php')
                 ControlIR:
                     text: 'R'
-                    on_release: app.sendPost('ledred')
+                    on_release: app.sendPost('ledred', 'gpio.php')
                 ControlIR:
                     text: 'G'
-                    on_release: app.sendPost('ledgreen')
+                    on_release: app.sendPost('ledgreen', 'gpio.php')
                 ControlIR:
                     text: 'B'
-                    on_release: app.sendPost('ledblue')
+                    on_release: app.sendPost('ledblue', 'gpio.php')
                 ControlIR:
                     text: 'Hell'
-                    on_release: app.sendPost('ledheller')
+                    on_release: app.sendPost('ledheller', 'gpio.php')
                 ControlIR:
                     text: 'Dunkel'
-                    on_release: app.sendPost('leddunkler')
+                    on_release: app.sendPost('leddunkler', 'gpio.php')
                 ControlIR:
                     text: '>>>'
-                    on_release: app.sendPost('ledfaster')
+                    on_release: app.sendPost('ledfaster', 'gpio.php')
                 ControlIR:
                     text: '>'
-                    on_release: app.sendPost('ledslower')
+                    on_release: app.sendPost('ledslower', 'gpio.php')
