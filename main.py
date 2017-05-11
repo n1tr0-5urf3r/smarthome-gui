@@ -36,25 +36,25 @@ class TabbedPanelApp(App):
     current_track = StringProperty()
     background = StringProperty("/var/www/html/bg.jpg")
 
-    def update(self, filepath, *args):
+    def update(self, filepath, value, *args):
         '''Update temperature from local file'''
         try:
             f = open(filepath, "r")
             new = f.read()
-            self.temperatur = str(new)
+            value = str(new)
             f.close()
         except IOError:
-            self.temperatur = 'NaN'
+            value = 'NaN'
             print('File not Found! ' + filepath)
 
     def build(self):
         # Temperatur
-        self.update('/home/pi/smarthome-gui/temperatur.txt')
-        self.update('/home/pi/smarthome-gui/status.txt')
-        self.update('/home/pi/smarthome-gui/current.txt')
-        Clock.schedule_interval(partial(self.update,'/home/pi/smarthome-gui/temperatur.txt'), 60)
-        Clock.schedule_interval(partial(self.update, '/home/pi/smarthome-gui/status.txt'), 5)
-        Clock.schedule_interval(partial(self.update, '/home/pi/smarthome-gui/current.txt'), 5)
+        self.update('/home/pi/smarthome-gui/temperatur.txt', self.temperatur)
+        self.update('/home/pi/smarthome-gui/status.txt', self.play_status)
+        self.update('/home/pi/smarthome-gui/current.txt', self.current_track)
+        Clock.schedule_interval(partial(self.update,'/home/pi/smarthome-gui/temperatur.txt', self.temperatur), 60)
+        Clock.schedule_interval(partial(self.update, '/home/pi/smarthome-gui/status.txt', self.play_status), 5)
+        Clock.schedule_interval(partial(self.update, '/home/pi/smarthome-gui/current.txt', self.current_track), 5)
         # Temperatur Graph
         sh = Smarthome()
         self.sh = sh
