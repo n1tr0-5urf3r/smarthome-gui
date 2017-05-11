@@ -41,20 +41,30 @@ class TabbedPanelApp(App):
         try:
             f = open(filepath, "r")
             new = f.read()
-            value = str(new)
+            if value == 0:
+                self.temperatur = str(new)
+            elif value == 1:
+                self.play_status == str(new)
+            elif value == 2:
+                self.current_track == str(new)
             f.close()
         except IOError:
-            value = 'NaN'
+            if value == 0:
+                self.temperatur = 'NaN'
+            elif value == 1:
+                self.play_status == 'ERROR!'
+            elif value == 2:
+                self.current_track == 'ERROR!'
             print('File not Found! ' + filepath)
 
     def build(self):
         # Temperatur
-        self.update('/home/pi/smarthome-gui/temperatur.txt', self.temperatur)
-        self.update('/home/pi/smarthome-gui/status.txt', self.play_status)
-        self.update('/home/pi/smarthome-gui/current.txt', self.current_track)
-        Clock.schedule_interval(partial(self.update,'/home/pi/smarthome-gui/temperatur.txt', self.temperatur), 60)
-        Clock.schedule_interval(partial(self.update, '/home/pi/smarthome-gui/status.txt', self.play_status), 5)
-        Clock.schedule_interval(partial(self.update, '/home/pi/smarthome-gui/current.txt', self.current_track), 5)
+        self.update('/home/pi/smarthome-gui/temperatur.txt', 0)
+        self.update('/home/pi/smarthome-gui/status.txt', 1)
+        self.update('/home/pi/smarthome-gui/current.txt', 2)
+        Clock.schedule_interval(partial(self.update,'/home/pi/smarthome-gui/temperatur.txt', 0), 60)
+        Clock.schedule_interval(partial(self.update, '/home/pi/smarthome-gui/status.txt', 1), 5)
+        Clock.schedule_interval(partial(self.update, '/home/pi/smarthome-gui/current.txt', 2), 5)
         # Temperatur Graph
         sh = Smarthome()
         self.sh = sh
