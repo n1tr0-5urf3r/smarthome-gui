@@ -63,8 +63,8 @@ class TabbedPanelApp(App):
         self.update('/home/pi/smarthome-gui/status.txt', 1)
         self.update('/home/pi/smarthome-gui/current.txt', 2)
         Clock.schedule_interval(partial(self.update,'/home/pi/smarthome-gui/temperatur.txt', 0), 60)
-        Clock.schedule_interval(partial(self.update, '/home/pi/smarthome-gui/status.txt', 1), 5)
-        Clock.schedule_interval(partial(self.update, '/home/pi/smarthome-gui/current.txt', 2), 5)
+        Clock.schedule_interval(partial(self.update, '/home/pi/smarthome-gui/status.txt', 1), 2)
+        Clock.schedule_interval(partial(self.update, '/home/pi/smarthome-gui/current.txt', 2), 2)
         # Temperatur Graph
         sh = Smarthome()
         self.sh = sh
