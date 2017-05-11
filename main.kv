@@ -115,15 +115,21 @@
                     text: 'Play'
                     on_release: app.sendPost('play', 'music.php')
                 Control:
-                    text: 'Mute'
-                    on_release: app.sendPost('mute', 'music.php')
-            BoxLayout:
-                Control:
                     text: 'Next'
                     on_release: app.sendPost('next', 'music.php')
                 Control:
                     text: 'Stop'
                     on_release: app.sendPost('stop', 'music.php')
+            BoxLayout:
+                Control:
+                    text: 'Vol. up'
+                    on_release: app.sendPost('volup', 'music.php')
+                Control:
+                    text: 'Vol. down'
+                    on_release: app.sendPost('voldown', 'music.php')
+                Control:
+                    text: 'Mute'
+                    on_release: app.sendPost('mute', 'music.php')
 
             Label:
                 text: 'Status: '
