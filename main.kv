@@ -11,17 +11,14 @@
     do_default_tab: False
     tab_width: self.width / 5
     tab_height: 75
-
     canvas.before:
         Rectangle:
             pos: self.pos
             size: self.size
             source: app.background
-
     TabbedPanelItem:
         text: 'Stromsteuerung'
         font_size: 20
-
         GridLayout:
             canvas.before:
                 Rectangle:
@@ -53,7 +50,6 @@
                 text:'Zimmertemperatur'
             Label:
                 text: app.temperatur
-
     TabbedPanelItem:
         text: 'PC-Steuerung'
         font_size: 20
@@ -74,7 +70,6 @@
                 text: 'Shutdown'
                 font_size: 40
                 on_release: app.confirmdialog('PC wirklich\nherunterfahren?', 'pcshutdown', 'gpio.php')
-
     TabbedPanelItem:
         text: 'Temperatur'
         font_size: 20
@@ -85,7 +80,6 @@
             size: 800, 400
             size_hint: None, None
             source: '/var/www/html/wetter.png'
-
     TabbedPanelItem:
         text: 'Musik'
         font_size: 20
@@ -132,7 +126,6 @@
                 Control:
                     text: 'Mute'
                     on_release: app.sendPost('mute', 'music.php')
-
             Label:
                 text: 'Status: '
             Label:
@@ -141,7 +134,6 @@
                 text: 'Current track: '
             Label:
                 text: app.current_track
-
     TabbedPanelItem:
         text: 'IR LED'
         font_size: 20
