@@ -116,12 +116,16 @@
                 Control:
                     text: 'Stop'
                     on_release: app.sendPost('stop', 'music.php')
+                Label:
+                    # Placeholder
             BoxLayout:
+                Label:
+                    # Placeholder
                 Control:
-                    text: 'Vol. up'
+                    text: 'Vol.\nup'
                     on_release: app.sendPost('volup', 'music.php')
                 Control:
-                    text: 'Vol. down'
+                    text: 'Vol.\ndown'
                     on_release: app.sendPost('voldown', 'music.php')
                 Control:
                     text: 'Mute'
